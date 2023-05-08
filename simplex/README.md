@@ -9,6 +9,7 @@ de problemas de programação linear, sendo ele, um dos mais tradicionais nessa 
 A entrada deve ser fornecida com o seguinte formato:
 
 Ex:
+        
         MAX x1 + x2
         1*x1 + 3*x2 >= 5
         1/2*x1 + 1/3*x2 <= 3
@@ -17,7 +18,7 @@ Ex:
 
 A primeira linha representa a função objetivo, sendo que a primeira palavra deve ser MAX, caso o problema seja de
 maximização ou MIN, caso o problema seja de minimização. As demais palavras devem se referir às variáveis, de modo
-que todas devem seguir o seguinte formato "Num*xi", sendo que 
+que todas devem seguir o seguinte formato " Num * xi ", sendo que 
         
         Num -> representa o coeficiente que multiplica a variável, podendo ele ser omitido, caso o coeficiente seja 1.
         O coeficiente deve sempre ser seguido do símbolo '*', que significa o final do coeficiente e o operador de multiplicação.
