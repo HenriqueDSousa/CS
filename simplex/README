@@ -1,10 +1,10 @@
-SIMPLEX
+# SIMPLEX
 
 Esta é uma implementação do algoritmo Simplex Duas Fases, realizada em Python. O Simplex é um algoritmo comumente utilizado para a resolução
 de problemas de programação linear, sendo ele, um dos mais tradicionais nessa área.
 
 
-1. Instruções de entrada:
+## 1. Instruções de entrada:
 
 A entrada deve ser fornecida com o seguinte formato:
 
@@ -31,7 +31,7 @@ As demais linhas representam as restrições do LPP, de modo que cada linha repr
 mesmo formato para a declaração das variáveis. As restrições podem ser formuladas com os sinais ">=", "<=" e "==", que representam,
 respectivamente, maior igual, menor igual e igual.
 
-2. Execução do programa
+## 2. Execução do programa
 
 O programa deve ser executado com a seguinte linha de comando:
 
@@ -41,7 +41,7 @@ $
 O arquivo de entrada deve ser um arquivo .txt que contenha a especificação do LPP, como definido anteriormente.
 
 
-3. Saída:
+## 3. Saída:
 
 A saída para o exemplo passado anteriormente é a seguinte: 
 
