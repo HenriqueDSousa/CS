@@ -109,7 +109,7 @@ def obj_func_parser(input):
                     coef = 1
             
             i+= 1
-    
+
     return c, max, vars_dict
 
 
@@ -120,6 +120,8 @@ def add_constraint(input:str, vars_dict):
     new_b = 0
     b_sign = ""
     next_negative = False
+
+    sign_read = False
 
     #qtd de variaveis
     vars_count = len(vars_dict)
@@ -134,14 +136,17 @@ def add_constraint(input:str, vars_dict):
         
         if function[i] == ">=":
             b_sign = ">="
+            sign_read = True
             i+=1
 
         elif function[i] == "<=":
             b_sign = "<="
+            sign_read = True
             i+=1
 
         elif function[i] == "==":
             b_sign = "=="
+            sign_read = True
             i+=1
         
         if function[i] == "+":
@@ -158,14 +163,22 @@ def add_constraint(input:str, vars_dict):
         #caso de word ser coeficiente/numero
         if function[i].isdigit() == True:
 
-
-            if(next_negative == False):
-                coef = int(function[i])
+            if sign_read == True:
+                
+                if next_negative == True:
+                    new_b = float(function[i])*(-1)
+                    next_negative = False
+                else:
+                    new_b = float(function[i])
 
             else:
-                #caso seja negativo
-                coef = int(function[i])*(-1)
-                next_negative = False
+                if(next_negative == False):
+                    coef = int(function[i])
+
+                else:
+                    #caso seja negativo
+                    coef = int(function[i])*(-1)
+                    next_negative = False
 
             i+=1
         
@@ -174,11 +187,21 @@ def add_constraint(input:str, vars_dict):
             
             #fracao
             if function[i] == '(':
-                coef = (int(function[i+1])/ int(function[i+3]))
-                if next_negative == True:
-                    coef = coef*(-1)
-                    next_negative = False
-                i += 5
+
+                if sign_read == True:
+                    new_b = (int(function[i+1])/ int(function[i+3]))
+                    if next_negative == True:
+                        new_b = new_b * (-1)
+                        next_negative = False
+
+                    i += 5
+
+                else:    
+                    coef = (int(function[i+1])/ int(function[i+3]))
+                    if next_negative == True:
+                        coef = coef*(-1)
+                        next_negative = False
+                    i += 5
                 
 
             elif function[i] == '*':
@@ -201,9 +224,7 @@ def add_constraint(input:str, vars_dict):
                     coef = 1
             
             i+= 1
-
-        new_b =  float(function[-1])
-    
+   
     return new_A, new_b, b_sign, vars_dict
 
 def get_constraints(input:str, vars_dict):
