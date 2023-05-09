@@ -43,163 +43,182 @@ def obj_func_parser(input):
         max = 0
 
     c = []
+    function = input.split()[1:]
 
+    vars_dict = {} #dicionario com as variaveis e seus indexes
+    vars_count = 0 # qtd de variaveis ja inputadas
     next_negative = False
-    for word in input.split()[1:]:
-
-        if word[0] == "+":
-            continue
+    coef = 1
+    i = 0
+    while i < len(function):
         
-        elif word[0] == "-":
+        if function[i] == "+":
+            i+=1
+        
+        elif function[i] == "-":
             next_negative = True
-            continue
+            i+=1
 
-        elif word[0] == "−":
+        elif function[i] == "−":
             next_negative = True
-            continue
+            i+=1
 
-        #caso de xN ser multiplicado por 1
-        if word[0].isdigit() == False:
+        #caso de word ser coeficiente/numero
+        if function[i].isdigit() == True:
 
-
+        
             if(next_negative == False):
-                insert_number_at_index(c, 1, int(word[1:])-1)
+                coef = float(function[i])
 
             else:
                 #caso seja negativo
-                insert_number_at_index(c, -1, int(word[1:])-1) 
+                coef = float(function[i])*(-1)
                 next_negative = False
-        
 
-        #caso tenha um coeficiente
-        elif word[0].isdigit() == True:
+            i+=1
+
+        #caso seja uma variavel ou parenteses
+        elif function[i].isdigit() == False:
             
-            coef = str("")
-            div = str("")
-            i = 0
-            for caract in word:
+            #fracao
+            if function[i] == '(':
+                coef = (int(function[i+1])/ int(function[i+3]))
+                if next_negative == True:
+                    coef = coef*(-1)
+                    next_negative = False
 
-                #coletando o coeficiente ate *
-                if caract != "*" and caract != "/":
-                    coef = coef + caract
-                    i += 1
+                i += 5
+                
 
-                elif caract == "/":
-                    div = coef
-                    coef = ""
-                    i += 1
+            elif function[i] == '*':
+                i += 1
+                continue
 
+            else:
+
+                if function[i] in vars_dict:
+                    
+                    insert_number_at_index(c, float(coef), vars_dict[function[i]])
+                
                 else:
 
-                    num = 0.0
-                    if div != "":
-                        num = float(div)/float(coef)
-                    else:
-                        num = float(coef)
-                    i+=2
-                    if next_negative == False:
-                        insert_number_at_index(c, num , int(word[i:])-1)
-                    else:
-                        insert_number_at_index(c, (-1) * num, int(word[i:])-1)
-                        next_negative = False
+                    vars_dict[function[i]] = vars_count
+                    insert_number_at_index(c, float(coef), vars_dict[function[i]])
 
-
-    return c, max
+                    vars_count += 1
+                    coef = 1
+            
+            i+= 1
+    
+    return c, max, vars_dict
 
 
 
-def add_constraint(input):
+def add_constraint(input:str, vars_dict):
 
     new_A = []
     new_b = 0
     b_sign = ""
     next_negative = False
 
-    input = input.split()
+    #qtd de variaveis
+    vars_count = len(vars_dict)
 
-    for word in input[:-1]:
+
+
+    function = input.split()
+
+    i = 0
+    coef = 1
+    while i < len(function):
         
-        if word == ">=":
+        if function[i] == ">=":
             b_sign = ">="
-            continue
+            i+=1
 
-        elif word == "<=":
+        elif function[i] == "<=":
             b_sign = "<="
-            continue
+            i+=1
 
-        elif word == "==":
+        elif function[i] == "==":
             b_sign = "=="
-            continue
+            i+=1
         
-        if word[0] == "+":
-            continue
+        if function[i] == "+":
+            i+=1
         
-        if word[0] == "-":
+        if function[i] == "-":
             next_negative = True
-            continue
+            i+=1
         
-        if word[0] == "−":
+        if function[i] == "−":
             next_negative = True
-            continue
+            i+=1
         
-        if word[0].isdigit() == False:
+        #caso de word ser coeficiente/numero
+        if function[i].isdigit() == True:
+
 
             if(next_negative == False):
-    
-                insert_number_at_index(new_A, 1, int(word[1:])-1)
+                coef = int(function[i])
 
             else:
                 #caso seja negativo
-                insert_number_at_index(new_A, -1, int(word[1:])-1) 
+                coef = int(function[i])*(-1)
                 next_negative = False
+
+            i+=1
         
-        elif word[0].isdigit() == True:
-        
-            coef = str("")
-            div = str("")
-            i = 0
-            for caract in word:
+        #caso seja uma variavel ou parenteses
+        elif function[i].isdigit() == False:
+            
+            #fracao
+            if function[i] == '(':
+                coef = (int(function[i+1])/ int(function[i+3]))
+                if next_negative == True:
+                    coef = coef*(-1)
+                    next_negative = False
+                i += 5
+                
 
-                #coletando o coeficiente ate *
-                if caract != "*" and caract != "/":
-                    coef = coef + caract
-                    i += 1
+            elif function[i] == '*':
+                i += 1
+                continue
 
-                elif caract == "/":
-                    div = coef
-                    coef = ""
-                    i += 1
+            else:
 
+                if function[i] in vars_dict:
+                    
+    
+                    insert_number_at_index(new_A, float(coef), vars_dict[function[i]])
+                
                 else:
-                    num = 0.0
-                    if div != "":
-                        num = float(div)/float(coef)
-                    else:
-                        num = float(coef)
-                    i+=2
-                    if next_negative == False:
-                        insert_number_at_index(new_A, num , int(word[i:])-1)
-                    else:
-                        insert_number_at_index(new_A, (-1) * num, int(word[i:])-1)
-                        next_negative = False
 
-        new_b =  float(input[-1])
+                    vars_dict[function[i]] = vars_count
+                    insert_number_at_index(new_A, float(coef), vars_dict[function[i]])
 
-    return new_A, new_b, b_sign
+                    vars_count += 1
+                    coef = 1
+            
+            i+= 1
 
-def get_constraints(input:str):
+        new_b =  float(function[-1])
+    
+    return new_A, new_b, b_sign, vars_dict
+
+def get_constraints(input:str, vars_dict):
 
     A = []
     b = []
     b_signs = []
 
     for line in input.split(sep="\n")[1:]:
-        new_A, new_b, b_sign = add_constraint(line)
+        new_A, new_b, b_sign, vars_dict = add_constraint(line, vars_dict)
         A.append(new_A)
         b.append(new_b)
         b_signs.append(b_sign)
 
-    max_len = 0
+    max_len = len(vars_dict)
     for sublist in A:
         
         if len(sublist) > max_len:
@@ -213,6 +232,5 @@ def get_constraints(input:str):
 
     A = np.array(matrix)
     
-    return A, b, b_signs
-
+    return A, b, b_signs, vars_dict
 
