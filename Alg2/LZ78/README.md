@@ -3,7 +3,7 @@
 Esta é um implementação do algoritmo LZ78, em Python. Este algoritmo é baseado na substituição de prefixos que já aconteceram no texto de entrada por referências aos prefixos que já ocorreram anteriormente. Nesta implementação foi utilizado uma Trie como estrutura de dados auxiliar ao algoritmo, de modo que as consultas, durante a compressão, pudessem ser feitas mais eficientemente. No geral, esse algoritmo é implementado com dicionários, de modo que são geradas tuplas de números e caracteres, cada uma representando um prefixo que já aconteceu no texto.
 Para salvar o arquivo compresso, foi verificado o número e o char que mais gastavam bits para serem codificados, de modo que o cabeçalho do arquivo compresso é quantos bits é necessário para codificar os números e os caracteres, utilizando o algoritmo de descompressão.
 
-# Instruções de inicialização
+## Instruções de inicialização
 
 Para utilizar o algoritmo de compressão, deve-se executar a seguinte linha de comando:
 
@@ -72,4 +72,12 @@ Foram realizados testes em 10 diferentes textos, de modo que a taxa de compress�
         Compressed size: 562442 bytes
         Compression ratio: 1.25
 
-Todos os arquivos utilizados para o teste estão na pasta 'inputs'.
+Todos os arquivos utilizados para o teste estão na pasta 'inputs'. Esses testes foram gerados ao executar o arquivo 'script.sh', que foi criado, exclusivamente, para realizar tais testes.
+No fim, o programa tem um taxa de compressão média de, aproximadamente, 1.3. Isso significa que, em média, cada 1.3 bytes do texto original pode ser codificado em 1 byte, no texto compresso.
+Vale ressaltar que essas taxas dependem do texto passado na entrada.
+
+## Compatibilidade da entrada
+
+Esta implementação aceita textos com codificação 'utf-8' e 'latin1'.
+
+
