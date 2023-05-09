@@ -1,7 +1,8 @@
 # SIMPLEX
 
 Esta é uma implementação do algoritmo Simplex Duas Fases, realizada em Python. O Simplex é um algoritmo comumente utilizado para a resolução
-de problemas de programação linear, sendo ele, um dos mais tradicionais nessa área.
+de problemas de programação linear (LPPs), sendo ele, um dos mais tradicionais nessa área.
+Nesta aplicação foi implementado um parser para os LPPs, de modo que as especificações da entrada são as seguintes: 
 
 
 ## 1. Instruções de entrada:
@@ -9,24 +10,25 @@ de problemas de programação linear, sendo ele, um dos mais tradicionais nessa 
 A entrada deve ser fornecida com o seguinte formato:
 
 Ex:
-        
+
         MAX x1 + x2
-        1*x1 + 3*x2 >= 5
-        1/2*x1 + 1/3*x2 <= 3
+        1 * x1 + 3 * x2 >= 5
+        ( 1 / 2 ) * x1 + ( 1 / 3 ) * x2 <= 3
         x1 >= 0
         x2 >= 0
 
 A primeira linha representa a função objetivo, sendo que a primeira palavra deve ser MAX, caso o problema seja de
 maximização ou MIN, caso o problema seja de minimização. As demais palavras devem se referir às variáveis, de modo
-que todas devem seguir o seguinte formato " Num * xi ", sendo que 
+que todas devem seguir o seguinte formato " Num * var ", sendo que 
         
         Num -> representa o coeficiente que multiplica a variável, podendo ele ser omitido, caso o coeficiente seja 1.
         O coeficiente deve sempre ser seguido do símbolo '*', que significa o final do coeficiente e o operador de multiplicação.
-        Logo, sempre que o coeficiente for diferente de 1 ou -1, o símbolo '*' deve aparecer entre o coeficiente e a variável, sem espaços entre
-        eles.
+        Logo, sempre que o coeficiente for diferente de 1 ou -1, o símbolo '*' deve aparecer entre o coeficiente e a variável, obrigatoriamente
+        com espaços entre eles.
+        Além disso, quando desejar colocar frações como coeficientes, ela deve sempre vir entre parênteses, de modo que haja um espaço entre cada 
+        operador e número.
 
-        xi -> representa a variável de índice i, sendo que sempre deve ser especificado o valor de i e que x
-        deve ser uma string de comprimento 1.
+        var -> representa uma variável do LPP, de modo que ela pode conter qualquer nome.
 
 As demais linhas representam as restrições do LPP, de modo que cada linha represente uma restrição. Elas seguem o 
 mesmo formato para a declaração das variáveis. As restrições podem ser formuladas com os sinais ">=", "<=" e "==", que representam,
@@ -36,7 +38,7 @@ respectivamente, maior igual, menor igual e igual.
 
 O programa deve ser executado com a seguinte linha de comando:
 
-``` python3 simplex.py -i <arquivo_de_entrada> -o <arquivo_de_saida>```
+$ python3 simplex.py -i <arquivo_de_entrada> -o <arquivo_de_saida> $
 
 
 O arquivo de entrada deve ser um arquivo .txt que contenha a especificação do LPP, como definido anteriormente.
