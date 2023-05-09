@@ -77,8 +77,9 @@ class Tableau:
             LPP
         """
 
-        c, self.max = obj_func_parser(input)
-        A, b , b_signs = get_constraints(input)
+        c, self.max, vars_dict = obj_func_parser(input)
+        A, b , b_signs, vars_dict= get_constraints(input, vars_dict)
+
 
         self.m, self.n = A.shape
         if self.max == 0:
@@ -328,6 +329,8 @@ if '-i' in sys.argv:
 
         filename = filename = sys.argv[sys.argv.index('-o') + 1]
 
+    else:
+        filename = "saida.txt"
 
     outfile=  open(filename, "w")
 
