@@ -1,0 +1,31 @@
+5 1000
+5 50
+lrbbmqbh 700 4C 10O 9P 10C 1P
+arzowkkyhid 500 4E 3E 12E 8O 10P
+scdxrjm 350 10O 1C 8E 9E 9P
+frxsjybldbef 500 9C 10P 3P 2P 8C
+rcbynecdyg 700 13C 13E 10E 5C 2C
+5 50
+lrbbmqbh 650 8E 1E 3E 9E 12P
+arzowkkyhid 250 11C 12P 9O 4P 8C
+scdxrjm 150 10P 11P 12O 3C 13E
+frxsjybldbef 200 12O 4P 9C 11O 8C
+rcbynecdyg 550 9O 13C 4E 1C 13P
+5 50
+lrbbmqbh 450 5O 6P 8P 5C 6P
+arzowkkyhid 200 4P 4E 9C 1P 10O
+scdxrjm 650 9O 10C 12O 11E 8C
+frxsjybldbef 300 6P 2P 3C 8E 9P
+rcbynecdyg 200 11P 12O 11E 2P 12C
+5 50
+lrbbmqbh 150 13O 13E 7O 4P 11E
+arzowkkyhid 700 6E 11E 13E 4C 5P
+scdxrjm 200 9O 2C 10P 6E 4E
+frxsjybldbef 200 9O 13E 3E 6C 8E
+rcbynecdyg 400 4C 7E 4P 10C 5P
+5 50
+lrbbmqbh 150 5E 12C 3C 6C 8P
+arzowkkyhid 150 6C 10P 6C 7P 7E
+scdxrjm 600 12O 4O 9E 11E 7P
+frxsjybldbef 150 7E 8P 6P 3E 11P
+rcbynecdyg 350 12O 3E 8E 9P 8E
