@@ -38,10 +38,11 @@ respectivamente, maior igual, menor igual e igual.
 
 O programa deve ser executado com a seguinte linha de comando:
 
-$ python3 simplex.py -i <arquivo_de_entrada> -o <arquivo_de_saida> $
+``` python3 simplex.py -i <arquivo_de_entrada> -o <arquivo_de_saida> ```
 
 
 O arquivo de entrada deve ser um arquivo .txt que contenha a especificação do LPP, como definido anteriormente.
+Caso o arquivo de saída não seja especificado, será criado um arquivo "saida.txt", com o output do programa.
 
 
 ## 3. Saída:
