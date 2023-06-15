@@ -40,7 +40,8 @@ def standart_pl(c,A,b, b_signs):
 
     A = np.hstack((A, np.eye(m)))  # Adicionar matrix identidade
     c = np.hstack((c, np.zeros(m)))  # Padding na funcao objetivo com 0s
-   
+
+
     
     c = [x * (-1) for x in c]
 
@@ -79,13 +80,19 @@ class Tableau:
 
         c, self.max, vars_dict = obj_func_parser(input)
         A, b , b_signs, vars_dict= get_constraints(input, vars_dict)
-
+        
 
         self.m, self.n = A.shape
+
+        c_fill = self.n - len(c) 
+
+        c.extend(np.zeros(c_fill))
+
         if self.max == 0:
             
             c = [(-1) * x for x in c]
 
+        
         
         self.c, self.A, self.b = standart_pl(c, A, b, b_signs)
         
@@ -179,8 +186,10 @@ class Tableau:
             prow = self.get_pivot_row_index(tb[1:, pcol], tb[1:, -1])
             
             if(prow == -1):
+
                 self.status = self.Result.UNBOUND
                 #certificado de ilimitado
+
                 self.certificate = tb[0:, pcol]
                 return tb
             
@@ -248,7 +257,7 @@ class Tableau:
         RHS = tb[1:, -1]
         objective_vals = np.arange(self.n)
         solution = np.zeros(self.n)
- 
+
         for col, line in base: 
             if col < self.n:
                 solution[col] = RHS[line] 
@@ -260,9 +269,10 @@ class Tableau:
         # Fase 1
         tb = self.create_aux_tableau()
         
-        
-
+    
         tb = self.solve_tableau(tb)        
+
+        #print(tb)
 
         if round(tb[0][-1], 5) == 0:
         # Fase 2
