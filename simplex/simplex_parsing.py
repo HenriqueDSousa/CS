@@ -129,7 +129,7 @@ def add_constraint(input:str, vars_dict):
 
 
     function = input.split()
-
+    
     i = 0
     coef = 1
     while i < len(function):
@@ -180,6 +180,7 @@ def add_constraint(input:str, vars_dict):
                     coef = int(function[i])*(-1)
                     next_negative = False
 
+
             i+=1
         
         #caso seja uma variavel ou parenteses
@@ -190,6 +191,7 @@ def add_constraint(input:str, vars_dict):
 
                 if sign_read == True:
                     new_b = (int(function[i+1])/ int(function[i+3]))
+                    
                     if next_negative == True:
                         new_b = new_b * (-1)
                         next_negative = False
@@ -209,6 +211,9 @@ def add_constraint(input:str, vars_dict):
                 continue
 
             else:
+
+                if next_negative == True:
+                    coef = coef * (-1)
 
                 if function[i] in vars_dict:
                     
